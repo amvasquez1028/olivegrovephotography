@@ -1,0 +1,90 @@
+@import "tailwindcss";
+
+:root {
+  --cream: #ffffff;
+  --cream-dark: #ffffff;
+  --gold: #b8956e;
+  --gold-dark: #9a7a52;
+  --sage: #8faa86;
+  --sage-dark: #5c7557;
+  --ink: #0a0a0a;
+  --background: var(--cream);
+  --foreground: var(--ink);
+  /* Primary CTA label color (see `BookButton`, `SiteFooter`). */
+  --og-button-fg: #ffffff;
+  /* Overridden at runtime by `SiteThemeApplier` / admin preview (`src/lib/site-theme.ts`). */
+  --og-font-sans: Georgia, "Times New Roman", Times, serif;
+  --og-font-display: "Courier New", Courier, monospace;
+  --og-font-script: "Courier New", Courier, monospace;
+}
+
+@theme inline {
+  --color-cream: var(--cream);
+  --color-cream-dark: var(--cream-dark);
+  --color-gold: var(--gold);
+  --color-gold-dark: var(--gold-dark);
+  --color-sage: var(--sage);
+  --color-sage-dark: var(--sage-dark);
+  --color-ink: var(--ink);
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --font-sans: var(--og-font-sans);
+  --font-display: var(--og-font-display);
+  --font-script: var(--og-font-script);
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  background: var(--background);
+  color: var(--foreground);
+  font-family: var(--font-sans);
+  font-weight: 400;
+  line-height: 1.75;
+  letter-spacing: 0.02em;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  font-family: var(--font-display);
+}
+
+button {
+  font-family: var(--font-display);
+}
+
+a.inline-flex.min-h-11 {
+  font-family: var(--font-display);
+}
+
+:focus-visible {
+  outline: 2px solid var(--ink);
+  outline-offset: 2px;
+}
+
+/* Inner panels/cards: bordered rounded-none blocks in main (not images, not PageShell) */
+@layer components {
+  main
+    [class*="rounded-none"][class*="border-ink"]:not(img):not(.page-shell-outer) {
+    outline: 1px solid var(--ink);
+    outline-offset: 0;
+  }
+
+  /* About page: 1px frame around heading + body + CTA (no border-ink; avoids panel rule stack) */
+  main .about-content-frame {
+    outline: 1px solid var(--ink);
+    outline-offset: 0;
+  }
+
+  /* Service detail — What to expect: one ink frame per tier or single block */
+  main .service-expect-card {
+    outline: 1px solid var(--ink);
+    outline-offset: 0;
+  }
+}
