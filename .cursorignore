@@ -1,0 +1,3 @@
+﻿# Keep studio-only routes out of default Cursor index unless opened explicitly
+src/app/admin/
+src/app/login/
